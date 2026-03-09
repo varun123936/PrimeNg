@@ -1,0 +1,22 @@
+What CDK Provides
+
+Some important utilities inside CDK:
+
+Feature	Purpose
+Overlay	Popups, dialogs, dropdowns
+DragDrop	Drag and drop functionality
+Scrolling	Virtual scrolling
+Accessibility (A11y)	Screen reader support
+Portal	Dynamic component rendering
+Clipboard	Copy-paste support
+
+
+| Component | Usage           |
+| --------- | --------------- |
+| Table     | Data grids      |
+| Dialog    | Popups          |
+| Dropdown  | Select lists    |
+| Calendar  | Date picker     |
+| Toast     | Notifications   |
+| Accordion | Expand sections |
+| DataView  | Cards layout    |

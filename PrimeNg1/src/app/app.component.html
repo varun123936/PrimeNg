@@ -1,0 +1,100 @@
+<h3>User Form</h3>
+
+<input
+pInputText
+type="text"
+[(ngModel)]="username"
+placeholder="Enter username"
+/>
+
+<p>You entered: {{username}}</p>
+
+<h1>--------------------------------------------------</h1>
+
+<input pInputText placeholder="Email">
+<input pInputText type="password" placeholder="Password">
+
+<h1>--------------------------------------------------</h1>
+
+<p-button
+label="Submit"
+icon="pi pi-check"
+(click)="submitForm()">
+</p-button>
+
+<h1>--------------------------------------------------</h1>
+
+<p-dropdown
+[options]="cities"
+[(ngModel)]="selectedCity"
+optionLabel="name"
+placeholder="Select City">
+</p-dropdown>
+
+<p>Selected: {{selectedCity?.name}}</p>
+
+<h1>--------------------------------------------------</h1>
+
+<p-table [value]="employees" [paginator]="true" [rows]="5" [responsiveLayout]="'scroll'">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Name</th>
+      <th>Department</th>
+      <th>Role</th>
+      <th>Joining Date</th>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="body" let-employee>
+    <tr>
+      <td>{{employee.name}}</td>
+      <td>{{employee.department}}</td>
+      <td>{{employee.role}}</td>
+      <td>{{employee.joiningDate | date}}</td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<h1>--------------------------------------------------</h1>
+
+<p-button label="Open Dialog" (click)="openDialog()"></p-button>
+
+<p-dialog
+header="User Details"
+[(visible)]="displayDialog"
+[modal]="true">
+
+<p>Welcome User</p>
+
+</p-dialog>
+
+<h1>--------------------------------------------------</h1>
+
+<p-toast></p-toast>
+
+<p-button
+label="Save"
+(click)="showSuccess()">
+</p-button>
+
+<h1>--------------------------------------------------</h1>
+
+<p-calendar 
+  [(ngModel)]="selectedDate" 
+  dateFormat="dd/mm/yy" 
+  [showIcon]="true" 
+  placeholder="Select a date">
+</p-calendar>
+<p>You selected: {{selectedDate | date:'fullDate'}}</p>
+
+<h1>--------------------------------------------------</h1>
+
+<p-accordion>
+  <p-accordionTab *ngFor="let faq of faqs" [header]="faq.question">
+    <p>{{faq.answer}}</p>
+  </p-accordionTab>
+</p-accordion>
+
+<h1>--------------------------------------------------</h1>
+
+

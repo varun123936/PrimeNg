@@ -1,0 +1,80 @@
+<h2>User List</h2>
+
+<p-table
+  [value]="filteredUsers"
+  [paginator]="true"
+  [(rows)]="rows"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  styleClass="p-datatable-striped">
+
+  <!-- HEADER -->
+  <ng-template pTemplate="header">
+    <tr>
+      <th pSortableColumn="id">
+        ID
+        <p-sortIcon field="id"></p-sortIcon>
+      </th>
+      <th pSortableColumn="name">
+        Name
+        <p-sortIcon field="name"></p-sortIcon>
+      </th>
+      <th pSortableColumn="email">
+        Email
+        <p-sortIcon field="email"></p-sortIcon>
+      </th>
+      <th pSortableColumn="role">
+        Role
+        <p-sortIcon field="role"></p-sortIcon>
+      </th>
+    </tr>
+    <tr>
+      <th>
+        <input
+          pInputText
+          type="text"
+          [(ngModel)]="filterId"
+          (ngModelChange)="applyFilters()"
+          placeholder="Filter"
+        />
+      </th>
+      <th>
+        <input
+          pInputText
+          type="text"
+          [(ngModel)]="filterName"
+          (ngModelChange)="applyFilters()"
+          placeholder="Filter"
+        />
+      </th>
+      <th>
+        <input
+          pInputText
+          type="text"
+          [(ngModel)]="filterEmail"
+          (ngModelChange)="applyFilters()"
+          placeholder="Filter"
+        />
+      </th>
+      <th>
+        <input
+          pInputText
+          type="text"
+          [(ngModel)]="filterRole"
+          (ngModelChange)="applyFilters()"
+          placeholder="Filter"
+        />
+      </th>
+    </tr>
+  </ng-template>
+
+  <!-- BODY -->
+  <ng-template pTemplate="body" let-user>
+    <tr>
+      <td>{{user.id}}</td>
+      <td>{{user.name}}</td>
+      <td>{{user.email}}</td>
+      <td>{{user.role}}</td>
+    </tr>
+  </ng-template>
+
+</p-table>

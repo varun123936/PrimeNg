@@ -5,24 +5,26 @@
   [paginator]="true"
   [(rows)]="rows"
   [rowsPerPageOptions]="rowsPerPageOptions"
-  styleClass="p-datatable-striped">
+  styleClass="p-datatable-striped"
+  role="grid"
+  aria-label="Users data table">
 
   <!-- HEADER -->
   <ng-template pTemplate="header">
     <tr>
-      <th pSortableColumn="id">
+      <th pSortableColumn="id" scope="col">
         ID
         <p-sortIcon field="id"></p-sortIcon>
       </th>
-      <th pSortableColumn="name">
+      <th pSortableColumn="name" scope="col">
         Name
         <p-sortIcon field="name"></p-sortIcon>
       </th>
-      <th pSortableColumn="email">
+      <th pSortableColumn="email" scope="col">
         Email
         <p-sortIcon field="email"></p-sortIcon>
       </th>
-      <th pSortableColumn="role">
+      <th pSortableColumn="role" scope="col">
         Role
         <p-sortIcon field="role"></p-sortIcon>
       </th>
@@ -33,8 +35,9 @@
           pInputText
           type="text"
           [(ngModel)]="filterId"
-          (ngModelChange)="applyFilters()"
-          placeholder="Filter"
+          (input)="onFilterChange()"
+          placeholder="Filter by ID"
+          aria-label="Filter users by ID"
         />
       </th>
       <th>
@@ -42,8 +45,9 @@
           pInputText
           type="text"
           [(ngModel)]="filterName"
-          (ngModelChange)="applyFilters()"
-          placeholder="Filter"
+          (input)="onFilterChange()"
+          placeholder="Filter by Name"
+          aria-label="Filter users by name"
         />
       </th>
       <th>
@@ -51,8 +55,9 @@
           pInputText
           type="text"
           [(ngModel)]="filterEmail"
-          (ngModelChange)="applyFilters()"
-          placeholder="Filter"
+          (input)="onFilterChange()"
+          placeholder="Filter by Email"
+          aria-label="Filter users by email"
         />
       </th>
       <th>
@@ -60,8 +65,9 @@
           pInputText
           type="text"
           [(ngModel)]="filterRole"
-          (ngModelChange)="applyFilters()"
-          placeholder="Filter"
+          (input)="onFilterChange()"
+          placeholder="Filter by Role"
+          aria-label="Filter users by role"
         />
       </th>
     </tr>

@@ -1,1 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global styles and imports for PrimeNG */
+
+/*
+  Import the PrimeNG theme, core styles, and PrimeIcons icons.
+  Using imports here ensures paths to font files resolve correctly after build.
+*/
+@import "~primeng/resources/themes/bootstrap4-light-blue/theme.css";
+@import "~primeng/resources/primeng.min.css";
+@import "~primeicons/primeicons.css";
+
+/* You can add additional global styles below */

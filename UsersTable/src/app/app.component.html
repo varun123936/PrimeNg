@@ -1,4 +1,15 @@
-<h2>User List</h2>
+<div class="table-header">
+  <h2>User List</h2>
+  <button
+    pButton
+    type="button"
+    label="Add User"
+    icon="pi pi-plus"
+    class="p-button-sm"
+    (click)="addUser()"
+    aria-label="Add user">
+  </button>
+</div>
 
 <p-table
   [value]="filteredUsers"
@@ -28,6 +39,7 @@
         Role
         <p-sortIcon field="role"></p-sortIcon>
       </th>
+      <th scope="col">Actions</th>
     </tr>
     <tr>
       <th>
@@ -70,6 +82,7 @@
           aria-label="Filter users by role"
         />
       </th>
+      <th></th>
     </tr>
   </ng-template>
 
@@ -80,7 +93,87 @@
       <td>{{user.name}}</td>
       <td>{{user.email}}</td>
       <td>{{user.role}}</td>
+      <td class="actions-cell">
+        <button
+          pButton
+          type="button"
+          class="p-button-text p-button-sm action-btn"
+          icon="pi pi-pencil"
+          (click)="editUser(user)"
+          aria-label="Edit user">
+        </button>
+        <button
+          pButton
+          type="button"
+          class="p-button-text p-button-sm p-button-danger action-btn"
+          icon="pi pi-trash"
+          (click)="deleteUser(user)"
+          aria-label="Delete user">
+        </button>
+      </td>
     </tr>
   </ng-template>
 
 </p-table>
+
+<p-dialog
+  [(visible)]="dialogVisible"
+  [modal]="true"
+  [closable]="false"
+  [style]="{width: '420px'}"
+  [header]="dialogMode === 'add' ? 'Add User' : 'Edit User'">
+  <div class="dialog-form">
+    <div class="field">
+      <label for="user-name">Name</label>
+      <input
+        id="user-name"
+        pInputText
+        type="text"
+        [(ngModel)]="dialogUser.name"
+        placeholder="Enter name"
+        aria-label="User name"
+      />
+    </div>
+    <div class="field">
+      <label for="user-email">Email</label>
+      <input
+        id="user-email"
+        pInputText
+        type="email"
+        [(ngModel)]="dialogUser.email"
+        placeholder="Enter email"
+        aria-label="User email"
+      />
+    </div>
+    <div class="field">
+      <label for="user-role">Role</label>
+      <input
+        id="user-role"
+        pInputText
+        type="text"
+        [(ngModel)]="dialogUser.role"
+        placeholder="Enter role"
+        aria-label="User role"
+      />
+    </div>
+  </div>
+  <ng-template pTemplate="footer">
+    <div class="dialog-actions">
+      <button
+        pButton
+        type="button"
+        label="Cancel"
+        class="p-button-text"
+        (click)="cancelDialog()">
+      </button>
+      <button
+        pButton
+        type="button"
+        label="Save"
+        icon="pi pi-check"
+        (click)="saveDialog()"
+        [disabled]="!dialogUser.name.trim() || !dialogUser.email.trim() || !dialogUser.role.trim()">
+      </button>
+    </div>
+  </ng-template>
+</p-dialog>

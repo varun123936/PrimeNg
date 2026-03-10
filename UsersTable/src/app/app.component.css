@@ -1,0 +1,39 @@
+.actions-cell {
+  white-space: nowrap;
+}
+
+.action-btn {
+  margin-right: 0.25rem;
+}
+
+.action-btn:last-child {
+  margin-right: 0;
+}
+
+.dialog-form {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+.table-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.table-header h2 {
+  margin: 0;
+}

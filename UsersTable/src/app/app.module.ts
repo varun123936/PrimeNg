@@ -6,6 +6,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { TableModule } from 'primeng/table';
 import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
+import { DialogModule } from 'primeng/dialog';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,7 +24,9 @@ import { UserService } from './services/user.service';
     FormsModule,
     HttpClientModule,
     TableModule,
-    InputTextModule
+    InputTextModule,
+    ButtonModule,
+    DialogModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

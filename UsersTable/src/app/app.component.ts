@@ -1,6 +1,7 @@
 import {
   Component,
   OnInit,
+  AfterViewInit,
   OnDestroy,
   ChangeDetectionStrategy,
   ChangeDetectorRef
@@ -19,7 +20,7 @@ import { User } from './models/user.model';
   styleUrls: ['./app.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   readonly title = 'UsersTable';
   rows = 7;
   readonly rowsPerPageOptions = [5, 7, 10];
@@ -35,6 +36,15 @@ export class AppComponent implements OnInit, OnDestroy {
   private filterSubject = new Subject<void>();
   private destroy$ = new Subject<void>();
 
+  dialogVisible = false;
+  dialogMode: 'add' | 'edit' = 'add';
+  dialogUser: User = {
+    id: 0,
+    name: '',
+    email: '',
+    role: 'Developer'
+  };
+
   constructor(
     private userService: UserService,
     private cdr: ChangeDetectorRef
@@ -45,6 +55,12 @@ export class AppComponent implements OnInit, OnDestroy {
    */
   ngOnInit(): void {
     this.loadUsers();
+  }
+
+  /**
+   * Angular lifecycle hook - after view initialization
+   */
+  ngAfterViewInit(): void {
     this.setupFiltering();
   }
 
@@ -94,6 +110,80 @@ export class AppComponent implements OnInit, OnDestroy {
    */
   onFilterChange(): void {
     this.filterSubject.next();
+  }
+
+  /**
+   * Open dialog to add a new user
+   */
+  addUser(): void {
+    this.dialogMode = 'add';
+    this.dialogUser = {
+      id: 0,
+      name: '',
+      email: '',
+      role: 'Developer'
+    };
+    this.dialogVisible = true;
+  }
+
+  /**
+   * Open dialog to edit an existing user
+   */
+  editUser(user: User): void {
+    this.dialogMode = 'edit';
+    this.dialogUser = { ...user };
+    this.dialogVisible = true;
+  }
+
+  /**
+   * Delete a user after confirmation
+   */
+  deleteUser(user: User): void {
+    const confirmed = window.confirm(
+      `Delete ${user.name} (ID: ${user.id})?`
+    );
+    if (!confirmed) {
+      return;
+    }
+
+    this.users = this.users.filter((existing) => existing.id !== user.id);
+    this.applyFilters();
+  }
+
+  /**
+   * Save dialog changes for add/edit
+   */
+  saveDialog(): void {
+    const name = this.dialogUser.name.trim();
+    const email = this.dialogUser.email.trim();
+    const role = this.dialogUser.role.trim();
+
+    if (!name || !email || !role) {
+      return;
+    }
+
+    if (this.dialogMode === 'add') {
+      const newUser: User = {
+        id: this.getNextId(),
+        name,
+        email,
+        role: role as User['role']
+      };
+      this.users = [...this.users, newUser];
+    } else {
+      this.users = this.users.map((existing) =>
+        existing.id === this.dialogUser.id
+          ? { ...existing, name, email, role: role as User['role'] }
+          : existing
+      );
+    }
+
+    this.dialogVisible = false;
+    this.applyFilters();
+  }
+
+  cancelDialog(): void {
+    this.dialogVisible = false;
   }
 
   /**
@@ -156,4 +246,12 @@ export class AppComponent implements OnInit, OnDestroy {
     }
     return user.role.toLowerCase().includes(this.filterRole.toLowerCase().trim());
   }
+
+  private getNextId(): number {
+    if (this.users.length === 0) {
+      return 1;
+    }
+    return Math.max(...this.users.map((user) => user.id)) + 1;
+  }
+
 }

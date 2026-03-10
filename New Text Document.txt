@@ -2,6 +2,10 @@ cd UsersTable
 npm install
 NODE_OPTIONS=--openssl-legacy-provider npm start -- --host 0.0.0.0 --port 4200
 
+cd UsersTable
+npm install --legacy-peer-deps
+npm run json-server
+
 
 
 What CDK Provides

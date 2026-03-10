@@ -1,0 +1,46 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Ava Patel",
+      "email": "ava.patel@gmail.com",
+      "role": "Developer"
+    },
+    {
+      "id": 2,
+      "name": "Noah Kim",
+      "email": "noah.kim@gmail.com",
+      "role": "Tester"
+    },
+    {
+      "id": 3,
+      "name": "Mia Gomez",
+      "email": "mia.gomez@gmail.com",
+      "role": "Developer"
+    },
+    {
+      "id": 4,
+      "name": "Liam Chen",
+      "email": "liam.chen@gmail.com",
+      "role": "Tester"
+    },
+    {
+      "id": 5,
+      "name": "Sophia Nguyen",
+      "email": "sophia.nguyen@gmail.com",
+      "role": "Developer"
+    },
+    {
+      "id": 6,
+      "name": "Ethan Brooks",
+      "email": "ethan.brooks@gmail.com",
+      "role": "Tester"
+    },
+    {
+      "id": 7,
+      "name": "Olivia Ross",
+      "email": "olivia.ross@gmail.com",
+      "role": "Developer"
+    }
+  ]
+}

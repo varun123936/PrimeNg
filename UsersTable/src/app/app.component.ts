@@ -21,8 +21,8 @@ import { User } from './models/user.model';
 })
 export class AppComponent implements OnInit, OnDestroy {
   readonly title = 'UsersTable';
-  rows = 30;
-  readonly rowsPerPageOptions = [5, 10, 15, 30];
+  rows = 7;
+  readonly rowsPerPageOptions = [5, 7, 10];
 
   users: User[] = [];
   filteredUsers: User[] = [];
@@ -61,12 +61,19 @@ export class AppComponent implements OnInit, OnDestroy {
    * Load users from service
    */
   private loadUsers(): void {
-    try {
-      this.users = this.userService.getUsers();
-      this.filteredUsers = [...this.users];
-    } catch (error) {
-      console.error('Error loading users:', error);
-    }
+    this.userService
+      .getUsers()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(
+        (users) => {
+          this.users = users;
+          this.filteredUsers = [...users];
+          this.cdr.markForCheck();
+        },
+        (error) => {
+          console.error('Error loading users:', error);
+        }
+      );
   }
 
   /**

@@ -1,3 +1,9 @@
+cd UsersTable
+npm install
+NODE_OPTIONS=--openssl-legacy-provider npm start -- --host 0.0.0.0 --port 4200
+
+
+
 What CDK Provides
 
 Some important utilities inside CDK:

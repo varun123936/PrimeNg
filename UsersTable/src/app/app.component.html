@@ -116,64 +116,10 @@
 
 </p-table>
 
-<p-dialog
+<app-user-dialog
   [(visible)]="dialogVisible"
-  [modal]="true"
-  [closable]="false"
-  [style]="{width: '420px'}"
-  [header]="dialogMode === 'add' ? 'Add User' : 'Edit User'">
-  <div class="dialog-form">
-    <div class="field">
-      <label for="user-name">Name</label>
-      <input
-        id="user-name"
-        pInputText
-        type="text"
-        [(ngModel)]="dialogUser.name"
-        placeholder="Enter name"
-        aria-label="User name"
-      />
-    </div>
-    <div class="field">
-      <label for="user-email">Email</label>
-      <input
-        id="user-email"
-        pInputText
-        type="email"
-        [(ngModel)]="dialogUser.email"
-        placeholder="Enter email"
-        aria-label="User email"
-      />
-    </div>
-    <div class="field">
-      <label for="user-role">Role</label>
-      <input
-        id="user-role"
-        pInputText
-        type="text"
-        [(ngModel)]="dialogUser.role"
-        placeholder="Enter role"
-        aria-label="User role"
-      />
-    </div>
-  </div>
-  <ng-template pTemplate="footer">
-    <div class="dialog-actions">
-      <button
-        pButton
-        type="button"
-        label="Cancel"
-        class="p-button-text"
-        (click)="cancelDialog()">
-      </button>
-      <button
-        pButton
-        type="button"
-        label="Save"
-        icon="pi pi-check"
-        (click)="saveDialog()"
-        [disabled]="!dialogUser.name.trim() || !dialogUser.email.trim() || !dialogUser.role.trim()">
-      </button>
-    </div>
-  </ng-template>
-</p-dialog>
+  [mode]="dialogMode"
+  [user]="dialogUser"
+  (save)="saveDialog()"
+  (cancel)="cancelDialog()">
+</app-user-dialog>

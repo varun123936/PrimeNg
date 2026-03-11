@@ -12,10 +12,12 @@ import { DialogModule } from 'primeng/dialog';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserService } from './services/user.service';
+import { UserDialogComponent } from './components/user-dialog/user-dialog.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    UserDialogComponent
   ],
   imports: [
     BrowserModule,

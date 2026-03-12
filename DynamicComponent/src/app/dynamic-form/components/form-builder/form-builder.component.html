@@ -1,14 +1,27 @@
-<app-field-selector
-  (fieldAdded)="addField($event)"
->
-</app-field-selector>
+<form [formGroup]="form" (ngSubmit)="submitForm()">
 
-<hr>
+  <app-field-selector
+    (fieldAdded)="addField($event)"
+  >
+  </app-field-selector>
 
-<h3>Generated Form</h3>
+  <hr>
 
-<app-dynamic-field
+  <h3>Generated Form</h3>
+
+  <app-dynamic-field
   *ngFor="let field of fields"
   [field]="field"
+  [form]="form"
 >
 </app-dynamic-field>
+
+  <br>
+
+  <button type="submit">
+
+    Submit Form
+
+  </button>
+
+</form>

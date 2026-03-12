@@ -1,4 +1,4 @@
-<div style="margin-bottom:15px">
+<div style="margin-bottom:15px" [formGroup]="form">
 
   <label>{{field.label}}</label>
 
@@ -6,71 +6,74 @@
 
     <!-- TEXT -->
     <input
-      *ngSwitchCase="'text'"
-      type="text"
-      [placeholder]="field.placeholder"
-    >
+ *ngSwitchCase="'text'"
+ type="text"
+ [formControlName]="field.name"
+ [placeholder]="field.placeholder"
+>
 
     <!-- NUMBER -->
     <input
-      *ngSwitchCase="'number'"
-      type="number"
-      [placeholder]="field.placeholder"
-    >
+ *ngSwitchCase="'number'"
+ type="number"
+ [formControlName]="field.name"
+>
 
     <!-- EMAIL -->
     <input
-      *ngSwitchCase="'email'"
-      type="email"
-      [placeholder]="field.placeholder"
-    >
+ *ngSwitchCase="'email'"
+ type="email"
+ [formControlName]="field.name"
+>
 
     <!-- DATE -->
     <input
-      *ngSwitchCase="'date'"
-      type="date"
-    >
+ *ngSwitchCase="'email'"
+ type="email"
+ [formControlName]="field.name"
+>
 
     <!-- TEXTAREA -->
     <textarea
-      *ngSwitchCase="'textarea'"
-      [placeholder]="field.placeholder"
-    ></textarea>
+ *ngSwitchCase="'textarea'"
+ [formControlName]="field.name"
+></textarea>
 
-    <!-- SELECT -->
-    <select *ngSwitchCase="'select'" [name]="field.name" [(ngModel)]="field.value">
+<!-- SELECT -->
+<select
+  *ngSwitchCase="'select'"
+  [formControlName]="field.name"
+>
 
-      <option *ngFor="let option of field.options" [value]="option">
+  <option *ngFor="let option of field.options" [value]="option">
+    {{option}}
+  </option>
 
-        {{option}}
+</select>
 
-      </option>
+<!-- CHECKBOX -->
+<input
+  *ngSwitchCase="'checkbox'"
+  type="checkbox"
+  [formControlName]="field.name"
+/>
 
-    </select>
+<!-- RADIO -->
+<div *ngSwitchCase="'radio'">
 
-    <!-- CHECKBOX -->
+  <label *ngFor="let option of field.options">
+
     <input
-      *ngSwitchCase="'checkbox'"
-      type="checkbox"
+      type="radio"
+      [formControlName]="field.name"
+      [value]="option"
     >
 
-    <!-- RADIO -->
-    <div *ngSwitchCase="'radio'">
+    {{option}}
 
-      <label *ngFor="let option of field.options">
+  </label>
 
-        <input
-          type="radio"
-          [name]="field.name"
-          [value]="option"
-          [(ngModel)]="field.value"
-        >
-
-        {{option}}
-
-      </label>
-
-    </div>
+</div>
 
   </div>
 

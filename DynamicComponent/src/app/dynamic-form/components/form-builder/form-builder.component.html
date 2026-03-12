@@ -1,0 +1,14 @@
+<app-field-selector
+  (fieldAdded)="addField($event)"
+>
+</app-field-selector>
+
+<hr>
+
+<h3>Fields Added</h3>
+
+<div *ngFor="let field of fields">
+
+  {{field.label}} ({{field.type}})
+
+</div>

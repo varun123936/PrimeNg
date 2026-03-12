@@ -1,1 +1,72 @@
-<p>dynamic-field works!</p>
+<div style="margin-bottom:15px">
+
+  <label>{{field.label}}</label>
+
+  <div [ngSwitch]="field.type">
+
+    <!-- TEXT -->
+    <input
+      *ngSwitchCase="'text'"
+      type="text"
+      [placeholder]="field.placeholder"
+    >
+
+    <!-- NUMBER -->
+    <input
+      *ngSwitchCase="'number'"
+      type="number"
+      [placeholder]="field.placeholder"
+    >
+
+    <!-- EMAIL -->
+    <input
+      *ngSwitchCase="'email'"
+      type="email"
+      [placeholder]="field.placeholder"
+    >
+
+    <!-- DATE -->
+    <input
+      *ngSwitchCase="'date'"
+      type="date"
+    >
+
+    <!-- TEXTAREA -->
+    <textarea
+      *ngSwitchCase="'textarea'"
+      [placeholder]="field.placeholder"
+    ></textarea>
+
+    <!-- SELECT -->
+    <select *ngSwitchCase="'select'">
+
+      <option *ngFor="let option of field.options">
+
+        {{option}}
+
+      </option>
+
+    </select>
+
+    <!-- CHECKBOX -->
+    <input
+      *ngSwitchCase="'checkbox'"
+      type="checkbox"
+    >
+
+    <!-- RADIO -->
+    <div *ngSwitchCase="'radio'">
+
+      <label *ngFor="let option of field.options">
+
+        <input type="radio" [value]="option">
+
+        {{option}}
+
+      </label>
+
+    </div>
+
+  </div>
+
+</div>

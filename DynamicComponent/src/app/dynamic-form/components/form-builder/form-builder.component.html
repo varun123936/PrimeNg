@@ -5,10 +5,10 @@
 
 <hr>
 
-<h3>Fields Added</h3>
+<h3>Generated Form</h3>
 
-<div *ngFor="let field of fields">
-
-  {{field.label}} ({{field.type}})
-
-</div>
+<app-dynamic-field
+  *ngFor="let field of fields"
+  [field]="field"
+>
+</app-dynamic-field>

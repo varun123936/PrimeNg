@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { FieldConfig } from '../../models/field-config.model';
 
 @Component({
   selector: 'app-dynamic-field',
@@ -12,4 +13,6 @@ export class DynamicFieldComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  @Input()
+  field!: FieldConfig;
 }

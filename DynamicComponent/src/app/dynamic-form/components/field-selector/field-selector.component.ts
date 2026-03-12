@@ -14,10 +14,11 @@ export class FieldSelectorComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  fieldTypes = FIELD_TYPES;
+ fieldTypes = FIELD_TYPES;
 
  selectedType: string = '';
  label: string = '';
+ optionsText: string = '';
 
  @Output()
  fieldAdded = new EventEmitter<FieldConfig>();
@@ -28,17 +29,35 @@ export class FieldSelectorComponent implements OnInit {
      return;
    }
 
+   const options = this.parseOptions(this.optionsText);
+   if ((this.selectedType === 'select' || this.selectedType === 'radio') && options.length === 0) {
+     return;
+   }
+
    const field: FieldConfig = {
      type: this.selectedType,
      label: this.label,
      name: this.label.toLowerCase().replace(/ /g, '_'),
-     placeholder: "Enter " + this.label
+     placeholder: "Enter " + this.label,
+     options: options.length > 0 ? options : undefined
    };
 
    this.fieldAdded.emit(field);
 
    this.label = '';
    this.selectedType = '';
+   this.optionsText = '';
+ }
+
+ private parseOptions(optionsText: string): string[] {
+   if (!optionsText) {
+     return [];
+   }
+
+   return optionsText
+     .split(',')
+     .map(option => option.trim())
+     .filter(option => option.length > 0);
  }
 
 }

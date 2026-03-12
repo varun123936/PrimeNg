@@ -36,6 +36,20 @@
 
   <br>
 
+  <div *ngIf="selectedType === 'select' || selectedType === 'radio'">
+
+    <label>Options (comma-separated)</label>
+
+    <input
+      type="text"
+      [(ngModel)]="optionsText"
+      placeholder="Option 1, Option 2, Option 3"
+    >
+
+  </div>
+
+  <br *ngIf="selectedType === 'select' || selectedType === 'radio'">
+
   <button (click)="addField()">
 
     Add Field

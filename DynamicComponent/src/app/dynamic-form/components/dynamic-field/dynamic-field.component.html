@@ -38,9 +38,9 @@
     ></textarea>
 
     <!-- SELECT -->
-    <select *ngSwitchCase="'select'">
+    <select *ngSwitchCase="'select'" [name]="field.name" [(ngModel)]="field.value">
 
-      <option *ngFor="let option of field.options">
+      <option *ngFor="let option of field.options" [value]="option">
 
         {{option}}
 
@@ -59,7 +59,12 @@
 
       <label *ngFor="let option of field.options">
 
-        <input type="radio" [value]="option">
+        <input
+          type="radio"
+          [name]="field.name"
+          [value]="option"
+          [(ngModel)]="field.value"
+        >
 
         {{option}}
 

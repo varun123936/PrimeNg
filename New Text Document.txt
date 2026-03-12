@@ -6,7 +6,13 @@ cd UsersTable
 npm install --legacy-peer-deps
 npm run json-server
 
-
+cd DynamicComponent
+nvm install 16
+nvm use 16
+node -v
+npm install -g @angular/cli@11
+npm install --legacy-peer-deps
+ng serve --host 0.0.0.0 --port 4200
 
 What CDK Provides
 

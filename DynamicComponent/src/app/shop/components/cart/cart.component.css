@@ -1,0 +1,8 @@
+.cart-thumb {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  background: #f8f9fa;
+  border-radius: 6px;
+  padding: 4px;
+}

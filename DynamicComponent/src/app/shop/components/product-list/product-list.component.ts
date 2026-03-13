@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../../models/product.model';
 import { ProductService } from '../../services/product.service';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-product-list',
@@ -15,8 +16,12 @@ export class ProductListComponent implements OnInit {
   first = 0;
   isLoading = false;
   errorMessage = '';
+  recentlyAddedId: number | null = null;
 
-  constructor(private productService: ProductService) {}
+  constructor(
+    private productService: ProductService,
+    private cartService: CartService
+  ) {}
 
   ngOnInit(): void {
     this.loadProducts();
@@ -44,6 +49,16 @@ export class ProductListComponent implements OnInit {
     this.first = event.first;
     this.rows = event.rows;
     this.updateVisibleProducts();
+  }
+
+  addToCart(product: Product): void {
+    this.cartService.addToCart(product);
+    this.recentlyAddedId = product.id;
+    setTimeout(() => {
+      if (this.recentlyAddedId === product.id) {
+        this.recentlyAddedId = null;
+      }
+    }, 2000);
   }
 
   private updateVisibleProducts(): void {

@@ -1,0 +1,25 @@
+<div class="d-flex align-items-center justify-content-between mb-3 flex-wrap">
+  <div>
+    <h2 class="mb-1">Your Cart</h2>
+    <p class="text-muted mb-0">Items you have added</p>
+  </div>
+</div>
+
+<div *ngIf="(items$ | async) as items">
+  <div *ngIf="items.length === 0" class="alert alert-info">
+    Your cart is empty.
+  </div>
+
+  <div *ngIf="items.length > 0">
+    <div class="list-group">
+      <div class="list-group-item d-flex align-items-center" *ngFor="let item of items">
+        <img [src]="item.product.image" [alt]="item.product.title" class="cart-thumb mr-3" />
+        <div class="flex-grow-1">
+          <div class="font-weight-bold">{{ item.product.title }}</div>
+          <div class="text-muted small">Qty: {{ item.quantity }}</div>
+        </div>
+        <div class="font-weight-bold">${{ item.product.price | number:'1.2-2' }}</div>
+      </div>
+    </div>
+  </div>
+</div>

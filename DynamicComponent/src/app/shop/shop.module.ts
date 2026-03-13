@@ -8,9 +8,10 @@ import { PaginatorModule } from 'primeng/paginator';
 
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
+import { CartComponent } from './components/cart/cart.component';
 
 @NgModule({
-  declarations: [ProductListComponent, ProductDetailComponent],
+  declarations: [ProductListComponent, ProductDetailComponent, CartComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -18,6 +19,6 @@ import { ProductDetailComponent } from './components/product-detail/product-deta
     ButtonModule,
     PaginatorModule
   ],
-  exports: [ProductListComponent, ProductDetailComponent]
+  exports: [ProductListComponent, ProductDetailComponent, CartComponent]
 })
 export class ShopModule {}

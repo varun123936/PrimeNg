@@ -36,13 +36,25 @@
           <div class="text-muted text-truncate-3">{{ product.description }}</div>
         </ng-template>
         <ng-template pTemplate="footer">
-          <button
-            pButton
-            type="button"
-            class="p-button-sm p-button-outlined"
-            label="View details"
-            [routerLink]="['/products', product.id]">
-          </button>
+          <div class="d-flex align-items-center justify-content-between flex-wrap">
+            <button
+              pButton
+              type="button"
+              class="p-button-sm p-button-outlined mb-2 mb-sm-0"
+              label="View details"
+              [routerLink]="['/products', product.id]">
+            </button>
+            <button
+              pButton
+              type="button"
+              class="p-button-sm p-button-success"
+              label="Add to cart"
+              (click)="addToCart(product)">
+            </button>
+          </div>
+          <div *ngIf="recentlyAddedId === product.id" class="small text-success mt-2">
+            Added to cart.
+          </div>
         </ng-template>
       </p-card>
     </div>

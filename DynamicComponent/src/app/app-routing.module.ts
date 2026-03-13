@@ -3,12 +3,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormBuilderComponent } from './dynamic-form/components/form-builder/form-builder.component';
 import { ProductListComponent } from './shop/components/product-list/product-list.component';
 import { ProductDetailComponent } from './shop/components/product-detail/product-detail.component';
+import { CartComponent } from './shop/components/cart/cart.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'products', pathMatch: 'full' },
   { path: 'form-builder', component: FormBuilderComponent },
   { path: 'products', component: ProductListComponent },
   { path: 'products/:id', component: ProductDetailComponent },
+  { path: 'cart', component: CartComponent },
   { path: '**', redirectTo: 'products' }
 ];
 

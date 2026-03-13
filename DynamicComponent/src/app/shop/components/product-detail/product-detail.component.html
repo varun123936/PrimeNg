@@ -34,7 +34,10 @@
         </div>
       </ng-template>
       <ng-template pTemplate="footer">
-        <button pButton type="button" label="Add to cart" class="p-button-sm" [disabled]="true"></button>
+        <button pButton type="button" label="Add to cart" class="p-button-sm" (click)="addToCart()"></button>
+        <div *ngIf="addedToCart" class="small text-success mt-2">
+          Added to cart.
+        </div>
       </ng-template>
     </p-card>
   </div>

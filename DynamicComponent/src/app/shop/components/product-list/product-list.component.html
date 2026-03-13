@@ -41,8 +41,7 @@
             type="button"
             class="p-button-sm p-button-outlined"
             label="View details"
-            [disabled]="true"
-            title="Details page will be wired in the next step">
+            [routerLink]="['/products', product.id]">
           </button>
         </ng-template>
       </p-card>

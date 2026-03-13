@@ -1,0 +1,20 @@
+.product-detail-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 24px;
+  min-height: 320px;
+}
+
+.product-detail-image img {
+  max-width: 100%;
+  max-height: 320px;
+  object-fit: contain;
+}
+
+.product-detail-price {
+  font-size: 1.5rem;
+  font-weight: 600;
+}

@@ -1,0 +1,60 @@
+<div class="d-flex align-items-center justify-content-between mb-3 flex-wrap">
+  <div>
+    <h2 class="mb-1">Product Listing</h2>
+    <p class="text-muted mb-0">Mini e-commerce catalog</p>
+  </div>
+  <button class="btn btn-outline-secondary btn-sm mt-2 mt-sm-0" (click)="loadProducts()">Refresh</button>
+</div>
+
+<div *ngIf="errorMessage" class="alert alert-danger">
+  {{ errorMessage }}
+</div>
+
+<div *ngIf="isLoading" class="text-center py-5">
+  <span class="spinner-border text-primary" role="status" aria-hidden="true"></span>
+  <div class="mt-2 text-muted">Loading products...</div>
+</div>
+
+<div *ngIf="!isLoading && visibleProducts.length === 0 && !errorMessage" class="alert alert-info">
+  No products available.
+</div>
+
+<div *ngIf="!isLoading && visibleProducts.length > 0">
+  <div class="row">
+    <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-4" *ngFor="let product of visibleProducts">
+      <p-card>
+        <ng-template pTemplate="header">
+          <div class="product-image-wrapper">
+            <img [src]="product.image" [alt]="product.title" />
+          </div>
+        </ng-template>
+        <ng-template pTemplate="title">
+          <div class="text-truncate-2">{{ product.title }}</div>
+        </ng-template>
+        <ng-template pTemplate="content">
+          <div class="product-price mb-2">${{ product.price | number:'1.2-2' }}</div>
+          <div class="text-muted text-truncate-3">{{ product.description }}</div>
+        </ng-template>
+        <ng-template pTemplate="footer">
+          <button
+            pButton
+            type="button"
+            class="p-button-sm p-button-outlined"
+            label="View details"
+            [disabled]="true"
+            title="Details page will be wired in the next step">
+          </button>
+        </ng-template>
+      </p-card>
+    </div>
+  </div>
+
+  <p-paginator
+    [rows]="rows"
+    [first]="first"
+    [totalRecords]="totalRecords"
+    [rowsPerPageOptions]="[4, 8, 12, 16]"
+    (onPageChange)="onPageChange($event)"
+    styleClass="p-paginator-sm">
+  </p-paginator>
+</div>

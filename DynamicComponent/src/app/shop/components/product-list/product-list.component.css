@@ -1,0 +1,34 @@
+.product-image-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  height: 180px;
+  background: #f8f9fa;
+}
+
+.product-image-wrapper img {
+  max-height: 150px;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.product-price {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.text-truncate-2,
+.text-truncate-3 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.text-truncate-2 {
+  -webkit-line-clamp: 2;
+}
+
+.text-truncate-3 {
+  -webkit-line-clamp: 3;
+}

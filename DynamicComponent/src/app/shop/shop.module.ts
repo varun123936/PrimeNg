@@ -9,9 +9,10 @@ import { PaginatorModule } from 'primeng/paginator';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 import { CartComponent } from './components/cart/cart.component';
+import { CartCountComponent } from './components/cart-count/cart-count.component';
 
 @NgModule({
-  declarations: [ProductListComponent, ProductDetailComponent, CartComponent],
+  declarations: [ProductListComponent, ProductDetailComponent, CartComponent, CartCountComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -19,6 +20,6 @@ import { CartComponent } from './components/cart/cart.component';
     ButtonModule,
     PaginatorModule
   ],
-  exports: [ProductListComponent, ProductDetailComponent, CartComponent]
+  exports: [ProductListComponent, ProductDetailComponent, CartComponent, CartCountComponent]
 })
 export class ShopModule {}

@@ -1,0 +1,6 @@
+<a class="btn btn-link text-dark position-relative ml-2" routerLink="/cart" title="Cart">
+  <i class="pi pi-shopping-cart"></i>
+  <span class="cart-badge" *ngIf="(cartItemCount$ | async) as count" [class.d-none]="count === 0">
+    {{ count }}
+  </span>
+</a>

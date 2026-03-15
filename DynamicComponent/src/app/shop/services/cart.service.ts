@@ -26,4 +26,23 @@ export class CartService {
 
     this.itemsSubject.next([...items, { product, quantity: 1 }]);
   }
+
+  removeFromCart(productId: number): void {
+    const items = this.getItems().filter((item) => item.product.id !== productId);
+    this.itemsSubject.next(items);
+  }
+
+  decrementQuantity(productId: number): void {
+    const items = this.getItems();
+    const existing = items.find((item) => item.product.id === productId);
+    if (!existing) {
+      return;
+    }
+    existing.quantity -= 1;
+    if (existing.quantity <= 0) {
+      this.removeFromCart(productId);
+      return;
+    }
+    this.itemsSubject.next([...items]);
+  }
 }

@@ -14,4 +14,20 @@ export class CartComponent {
   constructor(private cartService: CartService) {
     this.items$ = this.cartService.items$;
   }
+
+  removeItem(productId: number): void {
+    this.cartService.removeFromCart(productId);
+  }
+
+  decrementItem(productId: number): void {
+    this.cartService.decrementQuantity(productId);
+  }
+
+  incrementItem(productId: number): void {
+    const item = this.cartService.getItems().find((entry) => entry.product.id === productId);
+    if (!item) {
+      return;
+    }
+    this.cartService.addToCart(item.product);
+  }
 }

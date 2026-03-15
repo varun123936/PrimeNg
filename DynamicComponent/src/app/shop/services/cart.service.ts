@@ -10,6 +10,13 @@ export class CartService {
   private readonly itemsSubject = new BehaviorSubject<CartItem[]>([]);
   readonly items$ = this.itemsSubject.asObservable();
 
+  getTotal(): number {
+    return this.getItems().reduce(
+      (total, item) => total + item.product.price * item.quantity,
+      0
+    );
+  }
+
   getItems(): CartItem[] {
     return this.itemsSubject.getValue();
   }

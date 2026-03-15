@@ -4,6 +4,7 @@ import { FormBuilderComponent } from './dynamic-form/components/form-builder/for
 import { ProductListComponent } from './shop/components/product-list/product-list.component';
 import { ProductDetailComponent } from './shop/components/product-detail/product-detail.component';
 import { CartComponent } from './shop/components/cart/cart.component';
+import { CheckoutComponent } from './shop/components/checkout/checkout.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'products', pathMatch: 'full' },
@@ -11,6 +12,7 @@ const routes: Routes = [
   { path: 'products', component: ProductListComponent },
   { path: 'products/:id', component: ProductDetailComponent },
   { path: 'cart', component: CartComponent },
+  { path: 'checkout', component: CheckoutComponent },
   { path: '**', redirectTo: 'products' }
 ];
 

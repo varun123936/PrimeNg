@@ -10,9 +10,10 @@ import { ProductListComponent } from './components/product-list/product-list.com
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 import { CartComponent } from './components/cart/cart.component';
 import { CartCountComponent } from './components/cart-count/cart-count.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
 
 @NgModule({
-  declarations: [ProductListComponent, ProductDetailComponent, CartComponent, CartCountComponent],
+  declarations: [ProductListComponent, ProductDetailComponent, CartComponent, CartCountComponent, CheckoutComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -20,6 +21,6 @@ import { CartCountComponent } from './components/cart-count/cart-count.component
     ButtonModule,
     PaginatorModule
   ],
-  exports: [ProductListComponent, ProductDetailComponent, CartComponent, CartCountComponent]
+  exports: [ProductListComponent, ProductDetailComponent, CartComponent, CartCountComponent, CheckoutComponent]
 })
 export class ShopModule {}

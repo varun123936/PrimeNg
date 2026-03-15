@@ -1,0 +1,19 @@
+.summary-item {
+  padding: 8px 0;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.summary-title {
+  font-weight: 600;
+}
+
+.summary-meta {
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+.summary-total {
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding-top: 12px;
+}

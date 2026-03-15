@@ -29,8 +29,9 @@
       </div>
     </div>
     <div class="d-flex justify-content-end mt-3">
-      <div class="cart-total">
-        Total: ${{ (total$ | async) | number:'1.2-2' }}
+      <div class="cart-total d-flex align-items-center">
+        <div class="mr-3">Total: ${{ (total$ | async) | number:'1.2-2' }}</div>
+        <a class="btn btn-primary btn-sm" routerLink="/checkout">Checkout</a>
       </div>
     </div>
   </div>

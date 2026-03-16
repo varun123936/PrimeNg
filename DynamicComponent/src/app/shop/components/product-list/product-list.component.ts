@@ -17,6 +17,8 @@ export class ProductListComponent implements OnInit {
   isLoading = false;
   errorMessage = '';
   recentlyAddedId: number | null = null;
+  categories: { label: string; value: string }[] = [];
+  selectedCategory = 'all';
 
   constructor(
     private productService: ProductService,
@@ -25,13 +27,19 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadProducts();
+    this.loadCategories();
   }
 
   loadProducts(): void {
     this.isLoading = true;
     this.errorMessage = '';
 
-    this.productService.getProducts().subscribe(
+    const source$ =
+      this.selectedCategory === 'all'
+        ? this.productService.getProducts()
+        : this.productService.getProductsByCategory(this.selectedCategory);
+
+    source$.subscribe(
       (products) => {
         this.products = products || [];
         this.totalRecords = this.products.length;
@@ -51,6 +59,11 @@ export class ProductListComponent implements OnInit {
     this.updateVisibleProducts();
   }
 
+  onCategoryChange(): void {
+    this.first = 0;
+    this.loadProducts();
+  }
+
   addToCart(product: Product): void {
     this.cartService.addToCart(product);
     this.recentlyAddedId = product.id;
@@ -65,5 +78,20 @@ export class ProductListComponent implements OnInit {
     const start = this.first;
     const end = this.first + this.rows;
     this.visibleProducts = this.products.slice(start, end);
+  }
+
+  private loadCategories(): void {
+    this.productService.getCategories().subscribe(
+      (categories) => {
+        const options = (categories || []).map((category) => ({
+          label: category,
+          value: category
+        }));
+        this.categories = [{ label: 'All Categories', value: 'all' }, ...options];
+      },
+      () => {
+        this.categories = [{ label: 'All Categories', value: 'all' }];
+      }
+    );
   }
 }

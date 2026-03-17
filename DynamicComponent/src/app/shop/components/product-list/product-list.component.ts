@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '../../models/product.model';
 import { ProductService } from '../../services/product.service';
 import { CartService } from '../../services/cart.service';
@@ -22,11 +23,18 @@ export class ProductListComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    private cartService: CartService
+    private cartService: CartService,
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.loadProducts();
+    this.route.queryParamMap.subscribe((params) => {
+      const category = params.get('category');
+      this.selectedCategory = category || 'all';
+      this.first = 0;
+      this.loadProducts();
+    });
     this.loadCategories();
   }
 
@@ -61,7 +69,11 @@ export class ProductListComponent implements OnInit {
 
   onCategoryChange(): void {
     this.first = 0;
-    this.loadProducts();
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { category: this.selectedCategory === 'all' ? null : this.selectedCategory },
+      queryParamsHandling: 'merge'
+    });
   }
 
   addToCart(product: Product): void {

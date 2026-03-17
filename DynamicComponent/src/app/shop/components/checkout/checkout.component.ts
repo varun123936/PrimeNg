@@ -23,5 +23,6 @@ export class CheckoutComponent {
 
   placeOrder(): void {
     this.orderPlaced = true;
+    this.cartService.clearCart();
   }
 }

@@ -52,4 +52,8 @@ export class CartService {
     }
     this.itemsSubject.next([...items]);
   }
+
+  clearCart(): void {
+    this.itemsSubject.next([]);
+  }
 }

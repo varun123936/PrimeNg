@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '../../models/product.model';
 import { ProductService } from '../../services/product.service';
 import { CartService } from '../../services/cart.service';
+import { ShopToastService } from '../../services/shop-toast.service';
 
 @Component({
   selector: 'app-product-list',
@@ -17,7 +18,6 @@ export class ProductListComponent implements OnInit {
   first = 0;
   isLoading = false;
   errorMessage = '';
-  recentlyAddedId: number | null = null;
   categories: { label: string; value: string }[] = [];
   selectedCategory = 'all';
 
@@ -25,7 +25,8 @@ export class ProductListComponent implements OnInit {
     private productService: ProductService,
     private cartService: CartService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private toast: ShopToastService
   ) {}
 
   ngOnInit(): void {
@@ -57,6 +58,7 @@ export class ProductListComponent implements OnInit {
       () => {
         this.isLoading = false;
         this.errorMessage = 'Unable to load products. Please try again.';
+        this.toast.error('Products failed to load', 'Please try again in a moment.');
       }
     );
   }
@@ -78,12 +80,7 @@ export class ProductListComponent implements OnInit {
 
   addToCart(product: Product): void {
     this.cartService.addToCart(product);
-    this.recentlyAddedId = product.id;
-    setTimeout(() => {
-      if (this.recentlyAddedId === product.id) {
-        this.recentlyAddedId = null;
-      }
-    }, 2000);
+    this.toast.success('Added to cart', product.title);
   }
 
   private updateVisibleProducts(): void {
@@ -103,6 +100,7 @@ export class ProductListComponent implements OnInit {
       },
       () => {
         this.categories = [{ label: 'All Categories', value: 'all' }];
+        this.toast.warn('Categories unavailable', 'Showing all products.');
       }
     );
   }

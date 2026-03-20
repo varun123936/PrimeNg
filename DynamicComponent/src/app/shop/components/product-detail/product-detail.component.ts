@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '../../models/product.model';
 import { ProductService } from '../../services/product.service';
 import { CartService } from '../../services/cart.service';
+import { ShopToastService } from '../../services/shop-toast.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -13,13 +14,13 @@ export class ProductDetailComponent implements OnInit {
   product: Product | null = null;
   isLoading = false;
   errorMessage = '';
-  addedToCart = false;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private productService: ProductService,
-    private cartService: CartService
+    private cartService: CartService,
+    private toast: ShopToastService
   ) {}
 
   ngOnInit(): void {
@@ -43,6 +44,7 @@ export class ProductDetailComponent implements OnInit {
       () => {
         this.isLoading = false;
         this.errorMessage = 'Unable to load product details.';
+        this.toast.error('Product failed to load', 'Please go back and try again.');
       }
     );
   }
@@ -56,9 +58,6 @@ export class ProductDetailComponent implements OnInit {
       return;
     }
     this.cartService.addToCart(this.product);
-    this.addedToCart = true;
-    setTimeout(() => {
-      this.addedToCart = false;
-    }, 2000);
+    this.toast.success('Added to cart', this.product.title);
   }
 }

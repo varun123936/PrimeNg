@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
 
 import { AppComponent } from './app.component';
 import { DynamicFormModule } from './dynamic-form/dynamic-form.module';
@@ -18,9 +20,10 @@ import { ShopModule } from './shop/shop.module';
     DynamicFormModule,
     AppRoutingModule,
     HttpClientModule,
+    ToastModule,
     ShopModule
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

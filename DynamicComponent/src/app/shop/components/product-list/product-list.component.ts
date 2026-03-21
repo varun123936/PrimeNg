@@ -58,7 +58,6 @@ export class ProductListComponent implements OnInit {
       () => {
         this.isLoading = false;
         this.errorMessage = 'Unable to load products. Please try again.';
-        this.toast.error('Products failed to load', 'Please try again in a moment.');
       }
     );
   }
@@ -100,7 +99,6 @@ export class ProductListComponent implements OnInit {
       },
       () => {
         this.categories = [{ label: 'All Categories', value: 'all' }];
-        this.toast.warn('Categories unavailable', 'Showing all products.');
       }
     );
   }

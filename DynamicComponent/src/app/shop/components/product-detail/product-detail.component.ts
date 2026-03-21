@@ -44,7 +44,6 @@ export class ProductDetailComponent implements OnInit {
       () => {
         this.isLoading = false;
         this.errorMessage = 'Unable to load product details.';
-        this.toast.error('Product failed to load', 'Please go back and try again.');
       }
     );
   }

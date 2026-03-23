@@ -13,6 +13,11 @@ const routes: Routes = [
   { path: 'products/:id', component: ProductDetailComponent },
   { path: 'cart', component: CartComponent },
   { path: 'checkout', component: CheckoutComponent },
+  {
+    path: 'auth',
+    loadChildren: () =>
+      import('./registration/registration.module').then((m) => m.RegistrationModule)
+  },
   { path: '**', redirectTo: 'products' }
 ];
 

@@ -3,9 +3,95 @@
     <h1>Create Account</h1>
     <p class="subtitle">Sign up to start shopping.</p>
 
-    <div class="placeholder">
-      Signup form will be built in the next step.
-    </div>
+    <form [formGroup]="form" (ngSubmit)="submit()" class="auth-form">
+      <div class="field">
+        <label for="fullName">Full Name</label>
+        <input
+          id="fullName"
+          type="text"
+          pInputText
+          formControlName="fullName"
+          placeholder="Enter your name"
+        />
+        <small *ngIf="(submitted || form.controls.fullName.touched) && form.controls.fullName.invalid">
+          Name is required (min 2 characters).
+        </small>
+      </div>
+
+      <div class="field">
+        <label for="email">Email</label>
+        <input
+          id="email"
+          type="email"
+          pInputText
+          formControlName="email"
+          placeholder="you@example.com"
+        />
+        <small *ngIf="(submitted || form.controls.email.touched) && form.controls.email.invalid">
+          Enter a valid email address.
+        </small>
+      </div>
+
+      <div class="field">
+        <label for="phone">Phone Number</label>
+        <input
+          id="phone"
+          type="tel"
+          inputmode="numeric"
+          maxlength="10"
+          pInputText
+          formControlName="phone"
+          placeholder="10 digit number"
+        />
+        <small *ngIf="(submitted || form.controls.phone.touched) && form.controls.phone.invalid">
+          Phone must be exactly 10 digits (numbers only).
+        </small>
+      </div>
+
+      <div class="field">
+        <label for="address">Address</label>
+        <textarea
+          id="address"
+          pInputTextarea
+          formControlName="address"
+          rows="3"
+          placeholder="Street, city, state"
+        ></textarea>
+        <small *ngIf="(submitted || form.controls.address.touched) && form.controls.address.invalid">
+          Address is required (min 5 characters).
+        </small>
+      </div>
+
+      <div class="field">
+        <label for="password">Password</label>
+        <p-password
+          inputId="password"
+          formControlName="password"
+          [feedback]="false"
+          placeholder="Create a password"
+        ></p-password>
+        <small *ngIf="(submitted || form.controls.password.touched) && form.controls.password.invalid">
+          Password must be at least 6 characters.
+        </small>
+      </div>
+
+      <div class="field">
+        <label for="confirmPassword">Confirm Password</label>
+        <p-password
+          inputId="confirmPassword"
+          formControlName="confirmPassword"
+          [feedback]="false"
+          placeholder="Re-enter password"
+        ></p-password>
+        <small
+          *ngIf="(submitted || form.controls.confirmPassword.touched) && form.controls.confirmPassword.invalid"
+        >
+          Confirmation is required.
+        </small>
+      </div>
+
+      <button type="submit" pButton label="Create Account" class="full-width"></button>
+    </form>
 
     <p class="switch">
       Already have an account?

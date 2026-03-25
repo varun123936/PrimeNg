@@ -3,9 +3,36 @@
     <h1>Welcome Back</h1>
     <p class="subtitle">Log in to continue.</p>
 
-    <div class="placeholder">
-      Login form will be built in the next step.
-    </div>
+    <form [formGroup]="form" (ngSubmit)="submit()" class="auth-form">
+      <div class="field">
+        <label for="email">Email</label>
+        <input
+          id="email"
+          type="email"
+          pInputText
+          formControlName="email"
+          placeholder="you@example.com"
+        />
+        <small *ngIf="(submitted || form.controls.email.touched) && form.controls.email.invalid">
+          Enter a valid email address.
+        </small>
+      </div>
+
+      <div class="field">
+        <label for="password">Password</label>
+        <p-password
+          inputId="password"
+          formControlName="password"
+          [feedback]="false"
+          placeholder="Your password"
+        ></p-password>
+        <small *ngIf="(submitted || form.controls.password.touched) && form.controls.password.invalid">
+          Password must be at least 6 characters.
+        </small>
+      </div>
+
+      <button type="submit" pButton label="Log In" class="full-width"></button>
+    </form>
 
     <p class="switch">
       New here?

@@ -1,3 +1,20 @@
 {
-  "users": []
+  "users": [
+    {
+      "fullName": "Varun",
+      "email": "tejavarun@gmail.com",
+      "phone": "7981178445",
+      "address": "ssdf fggg hhgfdss",
+      "password": "123456",
+      "id": 1
+    },
+    {
+      "fullName": "Suresh",
+      "email": "suresh@gmail.com",
+      "phone": "7981178445",
+      "address": "ghjjj djff jffkfkfkkf",
+      "password": "123456",
+      "id": 2
+    }
+  ]
 }

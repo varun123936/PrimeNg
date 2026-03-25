@@ -1,0 +1,12 @@
+<div class="auth-page">
+  <div class="auth-card">
+    <h1>Welcome</h1>
+    <p class="subtitle" *ngIf="user">Hi {{ user.fullName }}, you are logged in.</p>
+    <p class="subtitle" *ngIf="!user">You are logged in.</p>
+
+    <div class="actions">
+      <button pButton type="button" label="Start Shopping" (click)="goToProducts()"></button>
+      <button pButton type="button" class="p-button-text" label="Log Out" (click)="logout()"></button>
+    </div>
+  </div>
+</div>

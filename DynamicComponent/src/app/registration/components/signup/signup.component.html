@@ -41,6 +41,7 @@
           maxlength="10"
           pInputText
           formControlName="phone"
+          (input)="onPhoneInput($event)"
           placeholder="10 digit number"
         />
         <small *ngIf="(submitted || form.controls.phone.touched) && form.controls.phone.invalid">
@@ -87,6 +88,9 @@
           *ngIf="(submitted || form.controls.confirmPassword.touched) && form.controls.confirmPassword.invalid"
         >
           Confirmation is required.
+        </small>
+        <small *ngIf="(submitted || form.touched) && form.errors?.passwordMismatch">
+          Passwords do not match.
         </small>
       </div>
 

@@ -1,0 +1,28 @@
+.auth-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 120px);
+  padding: 24px;
+  background: linear-gradient(135deg, #f5f7ff, #eef4ff);
+}
+
+.auth-card {
+  width: min(420px, 100%);
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  padding: 28px;
+  text-align: center;
+}
+
+.subtitle {
+  margin-top: 8px;
+  color: #5f6b7a;
+}
+
+.actions {
+  margin-top: 24px;
+  display: grid;
+  gap: 12px;
+}

@@ -7,6 +7,14 @@
       <a class="btn btn-outline-primary btn-sm mr-2" routerLink="/products">Products</a>
       <a class="btn btn-outline-secondary btn-sm" routerLink="/form-builder">Form Builder</a>
       <app-cart-count></app-cart-count>
+      <ng-container *ngIf="currentUser$ | async as user; else guestLinks">
+        <a class="btn btn-outline-success btn-sm mr-2" routerLink="/auth/welcome">Welcome</a>
+        <button class="btn btn-outline-danger btn-sm" type="button" (click)="logout()">Logout</button>
+      </ng-container>
+      <ng-template #guestLinks>
+        <a class="btn btn-outline-success btn-sm mr-2" routerLink="/auth/login">Login</a>
+        <a class="btn btn-outline-info btn-sm" routerLink="/auth/signup">Signup</a>
+      </ng-template>
     </div>
   </div>
 </nav>

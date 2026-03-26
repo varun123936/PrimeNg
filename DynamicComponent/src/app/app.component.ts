@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from './registration/services/auth.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -6,4 +8,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'DynamicComponent';
+
+  readonly currentUser$ = this.auth.currentUser$;
+
+  constructor(private auth: AuthService, private router: Router) {}
+
+  logout(): void {
+    this.auth.logout();
+    this.router.navigate(['/auth/login']);
+  }
 }
